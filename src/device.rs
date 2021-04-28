@@ -20,7 +20,6 @@ pub struct Device<'a> {
 impl<'a> Drop for Device<'a> {
     /// Releases the device reference.
     fn drop(&mut self) {
-        eprintln!("Dropping a device");
         unsafe {
             libusb_unref_device(self.device);
         }
