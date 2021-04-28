@@ -127,6 +127,10 @@ impl Context {
         unsafe { libusb_handle_events(self.context) };
     }
 
+		pub fn handle_events_timeout(&self, duration: &libc::timeval) {
+        unsafe { libusb_handle_events_timeout(self.context, duration) };
+		}
+
     /// Convenience function to open a device by its vendor ID and product ID.
     ///
     /// This function is provided as a convenience for building prototypes without having to
