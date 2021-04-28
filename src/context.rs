@@ -147,7 +147,7 @@ impl Context {
     }
 }
 
-extern "C" fn invoke_callback(_ctx: *mut libusb_context, device: *const libusb_device, event: i32, data: *mut std::ffi::c_void) -> i32 {
+extern "C" fn invoke_callback(_ctx: *mut libusb_context, device: *mut libusb_device, event: i32, data: *mut std::ffi::c_void) -> i32 {
     match HotPlugEvent::from_i32(event) {
         Some(event) => {
             let device = ManuallyDrop::new(unsafe { device::from_libusb(PhantomData, device as *mut libusb_device) });
